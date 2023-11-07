@@ -166,3 +166,19 @@ FROM public.player AS p
 JOIN public.hero AS h ON p.hero_id = h.hero_id
 WHERE h.is_active = true;
 
+SELECT hero.hero_name
+FROM hero
+INNER JOIN class ON hero.class_id = class.class_id
+WHERE class.class_name LIKE %Archers%;
+
+SELECT class.class_name, AVG(player.player_level) AS avg_level
+FROM class
+JOIN hero ON class.class_id = hero.class_id
+JOIN player ON hero.hero_id = player.hero_id
+GROUP BY class.class_name
+ORDER BY avg_level DESC;
+
+
+
+
+
